@@ -1,0 +1,36 @@
+﻿<Properties StartupConfiguration="{6FFB7891-25EE-430B-A4C0-EAAECF1C7B4A}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="TesteClasses/Controllers/LoginController.cs">
+    <Files>
+      <File FileName="TesteClasses/Controllers/WeatherForecastController.cs" Line="11" Column="28" />
+      <File FileName="TesteClasses/WeatherForecast.cs" Line="5" Column="2" />
+      <File FileName="TesteClasses/Models/ClienteModel.cs" Line="31" Column="23" />
+      <File FileName="TesteClasses/Models/InteracoesModel.cs" Line="13" Column="46" />
+      <File FileName="TesteClasses/Controllers/InteracoesController.cs" Line="10" Column="5" />
+      <File FileName="TesteClasses/Properties/launchSettings.json" Line="1" Column="1" />
+      <File FileName="TesteClasses/Controllers/LoginController.cs" Line="23" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="TesteClasses" expanded="True">
+            <Node name="TesteClasses" expanded="True">
+              <Node name="Dependencies" expanded="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="LoginController.cs" selected="True" />
+              </Node>
+              <Node name="Models" expanded="True" />
+              <Node name="Properties" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.TesteClasses PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
