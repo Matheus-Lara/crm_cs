@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/matheusmotta/Desktop/Desenvolvimento Visual/Teste/TesteClasses/TesteClasses/TesteClasses.csproj": {}
+    "/Users/matheusmotta/Desktop/PROJETO/crm_cs/TesteClasses/TesteClasses/TesteClasses.csproj": {}
   },
   "projects": {
-    "/Users/matheusmotta/Desktop/Desenvolvimento Visual/Teste/TesteClasses/TesteClasses/TesteClasses.csproj": {
+    "/Users/matheusmotta/Desktop/PROJETO/crm_cs/TesteClasses/TesteClasses/TesteClasses.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/matheusmotta/Desktop/Desenvolvimento Visual/Teste/TesteClasses/TesteClasses/TesteClasses.csproj",
+        "projectUniqueName": "/Users/matheusmotta/Desktop/PROJETO/crm_cs/TesteClasses/TesteClasses/TesteClasses.csproj",
         "projectName": "TesteClasses",
-        "projectPath": "/Users/matheusmotta/Desktop/Desenvolvimento Visual/Teste/TesteClasses/TesteClasses/TesteClasses.csproj",
+        "projectPath": "/Users/matheusmotta/Desktop/PROJETO/crm_cs/TesteClasses/TesteClasses/TesteClasses.csproj",
         "packagesPath": "/Users/matheusmotta/.nuget/packages/",
-        "outputPath": "/Users/matheusmotta/Desktop/Desenvolvimento Visual/Teste/TesteClasses/TesteClasses/obj/",
+        "outputPath": "/Users/matheusmotta/Desktop/PROJETO/crm_cs/TesteClasses/TesteClasses/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/matheusmotta/.config/NuGet/NuGet.Config"
@@ -61,7 +61,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.103/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.400/RuntimeIdentifierGraph.json"
         }
       }
     }

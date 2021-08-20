@@ -11,7 +11,7 @@ namespace TesteClasses.Controllers
     [Route("[controller]")]
     public class InteracoesController : ControllerBase
     {
-
+        
         [HttpGet]
         public IActionResult AdicionarInteracao(InteracoesModel model)
         {
@@ -22,7 +22,7 @@ namespace TesteClasses.Controllers
                 Descricao = model.Descricao,
                 MeioContato = model.MeioContato                
             };
-            
+
             return Ok(dados);
         }
     }

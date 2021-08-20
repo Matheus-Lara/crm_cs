@@ -6,7 +6,7 @@ namespace TesteClasses
     public class UsuarioModel
     {
         [Key]
-        public Guid IdUsuario { get; set; }
+        public int IdUsuario { get; set; }
 
         public string Nome { get; set; }
 
