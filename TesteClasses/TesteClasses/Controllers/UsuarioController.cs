@@ -10,7 +10,7 @@ namespace TesteClasses.Controllers
     [ApiController]
     [Route("[controller]")]
     public class UsuarioController : ControllerBase
-    {        
+    {
         [HttpGet]
         public IActionResult Get()
         {
