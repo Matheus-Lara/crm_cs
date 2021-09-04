@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace TesteClasses
+namespace TesteClasses.Models
 {
     public class UsuarioModel
     {

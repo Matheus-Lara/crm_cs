@@ -22,7 +22,6 @@ namespace TesteClasses.Models
 
         public bool ClienteRespondeu { get; set; }
 
-
         [ForeignKey("IdVendedor")]
         public virtual UsuarioModel Usuario { get; set; }
 
