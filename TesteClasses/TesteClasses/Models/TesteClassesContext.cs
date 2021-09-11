@@ -16,6 +16,8 @@ namespace TesteClasses.Models
 
         public DbSet<PropostaItemModel> PropostaItemModel { get; set; }
 
+        public DbSet<InteracoesModel> InteracoesModel { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder builder) {
             builder.UseSqlServer(@"Server=crm-teste.database.windows.net;User ID=adminserver;Password=crm@1234#;Database=crm_api;Integrated Security=False");
         }

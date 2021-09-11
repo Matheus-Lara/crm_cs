@@ -24,16 +24,10 @@ namespace TesteClasses.Models
 
         public int IdCliente { get; set; }
 
-        public int VendedorResponsavel { get; set; }
-
         [ForeignKey("IdCp")]
         public virtual CondicaoPagamentoModel CondicaoPagamento { get; set; }
 
         [ForeignKey("IdCliente")]
         public virtual ClienteModel Cliente { get; set; }
-
-        [ForeignKey("VendedorResponsavel")]
-        public virtual UsuarioModel Usuario { get; set; }
-
     }
 }
