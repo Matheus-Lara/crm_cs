@@ -11,47 +11,47 @@ namespace TesteClasses.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsuarioController : ControllerBase
+    public class ClienteController : ControllerBase
     {
         private readonly TesteClassesContext _context;
 
-        public UsuarioController(TesteClassesContext context)
+        public ClienteController(TesteClassesContext context)
         {
             _context = context;
         }
 
-        // GET: api/Usuario
+        // GET: api/Cliente
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<UsuarioModel>>> GetUsuarioModel()
+        public async Task<ActionResult<IEnumerable<ClienteModel>>> GetClienteModel()
         {
-            return await _context.UsuarioModel.ToListAsync();
+            return await _context.ClienteModel.ToListAsync();
         }
 
-        // GET: api/Usuario/5
+        // GET: api/Cliente/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<UsuarioModel>> GetUsuarioModel(int id)
+        public async Task<ActionResult<ClienteModel>> GetClienteModel(int id)
         {
-            var usuarioModel = await _context.UsuarioModel.FindAsync(id);
+            var clienteModel = await _context.ClienteModel.FindAsync(id);
 
-            if (usuarioModel == null)
+            if (clienteModel == null)
             {
                 return NotFound();
             }
 
-            return usuarioModel;
+            return clienteModel;
         }
 
-        // PUT: api/Usuario/5
+        // PUT: api/Cliente/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUsuarioModel(int id, UsuarioModel usuarioModel)
+        public async Task<IActionResult> PutClienteModel(int id, ClienteModel clienteModel)
         {
-            if (id != usuarioModel.IdUsuario)
+            if (id != clienteModel.IdCliente)
             {
                 return BadRequest();
             }
 
-            _context.Entry(usuarioModel).State = EntityState.Modified;
+            _context.Entry(clienteModel).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +59,7 @@ namespace TesteClasses.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UsuarioModelExists(id))
+                if (!ClienteModelExists(id))
                 {
                     return NotFound();
                 }
@@ -72,36 +72,36 @@ namespace TesteClasses.Controllers
             return NoContent();
         }
 
-        // POST: api/Usuario
+        // POST: api/Cliente
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<UsuarioModel>> PostUsuarioModel(UsuarioModel usuarioModel)
+        public async Task<ActionResult<ClienteModel>> PostClienteModel(ClienteModel clienteModel)
         {
-            _context.UsuarioModel.Add(usuarioModel);
+            _context.ClienteModel.Add(clienteModel);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUsuarioModel", new { id = usuarioModel.IdUsuario }, usuarioModel);
+            return CreatedAtAction("GetClienteModel", new { id = clienteModel.IdCliente }, clienteModel);
         }
 
-        // DELETE: api/Usuario/5
+        // DELETE: api/Cliente/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUsuarioModel(int id)
+        public async Task<IActionResult> DeleteClienteModel(int id)
         {
-            var usuarioModel = await _context.UsuarioModel.FindAsync(id);
-            if (usuarioModel == null)
+            var clienteModel = await _context.ClienteModel.FindAsync(id);
+            if (clienteModel == null)
             {
                 return NotFound();
             }
 
-            _context.UsuarioModel.Remove(usuarioModel);
+            _context.ClienteModel.Remove(clienteModel);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool UsuarioModelExists(int id)
+        private bool ClienteModelExists(int id)
         {
-            return _context.UsuarioModel.Any(e => e.IdUsuario == id);
+            return _context.ClienteModel.Any(e => e.IdCliente == id);
         }
     }
 }

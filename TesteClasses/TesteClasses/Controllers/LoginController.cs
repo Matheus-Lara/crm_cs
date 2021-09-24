@@ -9,10 +9,10 @@ namespace TesteClasses.Controllers
 {
 
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class LoginController : ControllerBase
     {
-       [HttpPost, Route("login")]
+       [HttpPost]
         public IActionResult Login()
         {
 

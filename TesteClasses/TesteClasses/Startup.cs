@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using TesteClasses.Models;
 
 namespace TesteClasses
 {
@@ -32,6 +33,7 @@ namespace TesteClasses
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TesteClasses", Version = "v1" });
             });
+            services.AddDbContext<TesteClassesContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

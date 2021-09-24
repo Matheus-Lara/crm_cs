@@ -11,47 +11,47 @@ namespace TesteClasses.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsuarioController : ControllerBase
+    public class PropostaController : ControllerBase
     {
         private readonly TesteClassesContext _context;
 
-        public UsuarioController(TesteClassesContext context)
+        public PropostaController(TesteClassesContext context)
         {
             _context = context;
         }
 
-        // GET: api/Usuario
+        // GET: api/Proposta
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<UsuarioModel>>> GetUsuarioModel()
+        public async Task<ActionResult<IEnumerable<PropostaModel>>> GetPropostaModel()
         {
-            return await _context.UsuarioModel.ToListAsync();
+            return await _context.PropostaModel.ToListAsync();
         }
 
-        // GET: api/Usuario/5
+        // GET: api/Proposta/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<UsuarioModel>> GetUsuarioModel(int id)
+        public async Task<ActionResult<PropostaModel>> GetPropostaModel(int id)
         {
-            var usuarioModel = await _context.UsuarioModel.FindAsync(id);
+            var propostaModel = await _context.PropostaModel.FindAsync(id);
 
-            if (usuarioModel == null)
+            if (propostaModel == null)
             {
                 return NotFound();
             }
 
-            return usuarioModel;
+            return propostaModel;
         }
 
-        // PUT: api/Usuario/5
+        // PUT: api/Proposta/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUsuarioModel(int id, UsuarioModel usuarioModel)
+        public async Task<IActionResult> PutPropostaModel(int id, PropostaModel propostaModel)
         {
-            if (id != usuarioModel.IdUsuario)
+            if (id != propostaModel.IdProposta)
             {
                 return BadRequest();
             }
 
-            _context.Entry(usuarioModel).State = EntityState.Modified;
+            _context.Entry(propostaModel).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +59,7 @@ namespace TesteClasses.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UsuarioModelExists(id))
+                if (!PropostaModelExists(id))
                 {
                     return NotFound();
                 }
@@ -72,36 +72,36 @@ namespace TesteClasses.Controllers
             return NoContent();
         }
 
-        // POST: api/Usuario
+        // POST: api/Proposta
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<UsuarioModel>> PostUsuarioModel(UsuarioModel usuarioModel)
+        public async Task<ActionResult<PropostaModel>> PostPropostaModel(PropostaModel propostaModel)
         {
-            _context.UsuarioModel.Add(usuarioModel);
+            _context.PropostaModel.Add(propostaModel);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUsuarioModel", new { id = usuarioModel.IdUsuario }, usuarioModel);
+            return CreatedAtAction("GetPropostaModel", new { id = propostaModel.IdProposta }, propostaModel);
         }
 
-        // DELETE: api/Usuario/5
+        // DELETE: api/Proposta/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUsuarioModel(int id)
+        public async Task<IActionResult> DeletePropostaModel(int id)
         {
-            var usuarioModel = await _context.UsuarioModel.FindAsync(id);
-            if (usuarioModel == null)
+            var propostaModel = await _context.PropostaModel.FindAsync(id);
+            if (propostaModel == null)
             {
                 return NotFound();
             }
 
-            _context.UsuarioModel.Remove(usuarioModel);
+            _context.PropostaModel.Remove(propostaModel);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool UsuarioModelExists(int id)
+        private bool PropostaModelExists(int id)
         {
-            return _context.UsuarioModel.Any(e => e.IdUsuario == id);
+            return _context.PropostaModel.Any(e => e.IdProposta == id);
         }
     }
 }
