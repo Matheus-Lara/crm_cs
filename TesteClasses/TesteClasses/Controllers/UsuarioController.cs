@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TesteClasses.Models;
 using TesteClasses.Services;
+using C = TesteClasses.Constants;
 using Microsoft.AspNetCore.Authorization;
 
 namespace TesteClasses.Controllers
@@ -43,7 +44,7 @@ namespace TesteClasses.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "False")]
+        [Authorize(Roles = C.ADMIN)]
         public async Task<ActionResult<IEnumerable<UsuarioModel>>> GetUsuarioModel()
         {
             return await _context.UsuarioModel.ToListAsync();
@@ -108,7 +109,7 @@ namespace TesteClasses.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = "False")]
+        [Authorize(Roles = C.ADMIN)]
         public async Task<IActionResult> DeleteUsuarioModel(int id)
         {
             var usuarioModel = await _context.UsuarioModel.FindAsync(id);
