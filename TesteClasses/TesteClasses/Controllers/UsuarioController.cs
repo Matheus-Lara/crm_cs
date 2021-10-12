@@ -37,6 +37,8 @@ namespace TesteClasses.Controllers
 
             string token = TokenService.GerarToken(usuario);
 
+            usuario.Senha = null;
+
             return new {
                 usuario = usuario,
                 token = token
@@ -45,9 +47,16 @@ namespace TesteClasses.Controllers
 
         [HttpGet]
         [Authorize(Roles = C.ADMIN)]
-        public async Task<ActionResult<IEnumerable<UsuarioModel>>> GetUsuarioModel()
+        public ActionResult<IEnumerable<UsuarioModel>> GetUsuarioModel()
         {
-            return await _context.UsuarioModel.ToListAsync();
+            var listUsers = _context.UsuarioModel.ToList();
+
+            for (int i = 0; i < listUsers.Count; i++)
+            {
+                listUsers[i].Senha = null;
+            }
+
+            return listUsers;
         }
 
         [HttpGet("{id}")]
@@ -59,6 +68,8 @@ namespace TesteClasses.Controllers
             {
                 return NotFound();
             }
+
+            usuarioModel.Senha = null;
 
             return usuarioModel;
         }
@@ -138,6 +149,8 @@ namespace TesteClasses.Controllers
 
             _context.UsuarioModel.Add(usuarioModel);
             await _context.SaveChangesAsync();
+
+            usuarioModel.Senha = null;
 
             return CreatedAtAction("GetUsuarioModel", new { id = usuarioModel.IdUsuario }, usuarioModel);
         }
