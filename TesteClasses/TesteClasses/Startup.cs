@@ -12,6 +12,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using TesteClasses.Models;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+
 
 namespace TesteClasses
 {
@@ -33,6 +37,25 @@ namespace TesteClasses
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TesteClasses", Version = "v1" });
             });
+
+            services.AddCors();
+            var appKey = Encoding.ASCII.GetBytes(AppKey.Key);
+            services.AddAuthentication(auth => {
+              auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+              auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(jwt => {
+              jwt.RequireHttpsMetadata = false;
+              jwt.SaveToken = true;
+              jwt.TokenValidationParameters = new TokenValidationParameters
+              {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(appKey),
+                ValidateAudience = false,
+                ValidateIssuer = false
+              };
+            });
+
             services.AddDbContext<TesteClassesContext>();
         }
 
@@ -49,6 +72,14 @@ namespace TesteClasses
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            //Incluído...
+            app.UseCors(cors => cors
+              .AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader()
+            );
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

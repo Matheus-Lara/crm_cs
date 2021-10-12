@@ -20,14 +20,12 @@ namespace TesteClasses.Controllers
             _context = context;
         }
 
-        // GET: api/CondicaoPagamento
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CondicaoPagamentoModel>>> GetCondicaoPagamentoModel()
         {
             return await _context.CondicaoPagamentoModel.ToListAsync();
         }
 
-        // GET: api/CondicaoPagamento/5
         [HttpGet("{id}")]
         public async Task<ActionResult<CondicaoPagamentoModel>> GetCondicaoPagamentoModel(int id)
         {
@@ -41,8 +39,6 @@ namespace TesteClasses.Controllers
             return condicaoPagamentoModel;
         }
 
-        // PUT: api/CondicaoPagamento/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCondicaoPagamentoModel(int id, CondicaoPagamentoModel condicaoPagamentoModel)
         {
@@ -72,8 +68,6 @@ namespace TesteClasses.Controllers
             return NoContent();
         }
 
-        // POST: api/CondicaoPagamento
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<CondicaoPagamentoModel>> PostCondicaoPagamentoModel(CondicaoPagamentoModel condicaoPagamentoModel)
         {
@@ -83,7 +77,6 @@ namespace TesteClasses.Controllers
             return CreatedAtAction("GetCondicaoPagamentoModel", new { id = condicaoPagamentoModel.IdCp }, condicaoPagamentoModel);
         }
 
-        // DELETE: api/CondicaoPagamento/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCondicaoPagamentoModel(int id)
         {

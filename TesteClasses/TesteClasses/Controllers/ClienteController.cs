@@ -20,14 +20,12 @@ namespace TesteClasses.Controllers
             _context = context;
         }
 
-        // GET: api/Cliente
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ClienteModel>>> GetClienteModel()
         {
             return await _context.ClienteModel.ToListAsync();
         }
 
-        // GET: api/Cliente/5
         [HttpGet("{id}")]
         public async Task<ActionResult<ClienteModel>> GetClienteModel(int id)
         {
@@ -41,8 +39,6 @@ namespace TesteClasses.Controllers
             return clienteModel;
         }
 
-        // PUT: api/Cliente/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutClienteModel(int id, ClienteModel clienteModel)
         {
@@ -72,8 +68,6 @@ namespace TesteClasses.Controllers
             return NoContent();
         }
 
-        // POST: api/Cliente
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<ClienteModel>> PostClienteModel(ClienteModel clienteModel)
         {
@@ -83,7 +77,6 @@ namespace TesteClasses.Controllers
             return CreatedAtAction("GetClienteModel", new { id = clienteModel.IdCliente }, clienteModel);
         }
 
-        // DELETE: api/Cliente/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteClienteModel(int id)
         {

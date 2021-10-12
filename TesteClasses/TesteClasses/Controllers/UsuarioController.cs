@@ -6,11 +6,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TesteClasses.Models;
+using TesteClasses.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TesteClasses.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UsuarioController : ControllerBase
     {
         private readonly TesteClassesContext _context;
@@ -20,14 +23,32 @@ namespace TesteClasses.Controllers
             _context = context;
         }
 
-        // GET: api/Usuario
+        [HttpPost]
+        [Route("Login")]
+        [AllowAnonymous]
+        public ActionResult<dynamic> Login([FromBody]Credencial credencial)
+        {
+            UsuarioModel usuario = _context.UsuarioModel.SingleOrDefault(u => u.Login == credencial.Login);
+
+            if (usuario == null || !SenhaService.CompararHash(credencial.Senha, usuario.Senha)) {
+                return NotFound(new { message = "Usuário ou senha inválidos" });
+            }
+
+            string token = TokenService.GerarToken(usuario);
+
+            return new {
+                usuario = usuario,
+                token = token
+            };
+        }
+
         [HttpGet]
+        [Authorize(Roles = "False")]
         public async Task<ActionResult<IEnumerable<UsuarioModel>>> GetUsuarioModel()
         {
             return await _context.UsuarioModel.ToListAsync();
         }
 
-        // GET: api/Usuario/5
         [HttpGet("{id}")]
         public async Task<ActionResult<UsuarioModel>> GetUsuarioModel(int id)
         {
@@ -41,8 +62,6 @@ namespace TesteClasses.Controllers
             return usuarioModel;
         }
 
-        // PUT: api/Usuario/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUsuarioModel(int id, UsuarioModel usuarioModel)
         {
@@ -50,6 +69,9 @@ namespace TesteClasses.Controllers
             {
                 return BadRequest();
             }
+
+            string passwordHash = SenhaService.GerarHash(usuarioModel.Senha);
+            usuarioModel.Senha = passwordHash;
 
             _context.Entry(usuarioModel).State = EntityState.Modified;
 
@@ -72,19 +94,21 @@ namespace TesteClasses.Controllers
             return NoContent();
         }
 
-        // POST: api/Usuario
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [AllowAnonymous]
         public async Task<ActionResult<UsuarioModel>> PostUsuarioModel(UsuarioModel usuarioModel)
         {
+            string passwordHash = SenhaService.GerarHash(usuarioModel.Senha);
+            usuarioModel.Senha = passwordHash;
+
             _context.UsuarioModel.Add(usuarioModel);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetUsuarioModel", new { id = usuarioModel.IdUsuario }, usuarioModel);
         }
 
-        // DELETE: api/Usuario/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "False")]
         public async Task<IActionResult> DeleteUsuarioModel(int id)
         {
             var usuarioModel = await _context.UsuarioModel.FindAsync(id);
