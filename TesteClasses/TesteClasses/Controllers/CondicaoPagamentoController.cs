@@ -6,11 +6,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TesteClasses.Models;
+using C = TesteClasses.Constants;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TesteClasses.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CondicaoPagamentoController : ControllerBase
     {
         private readonly TesteClassesContext _context;
