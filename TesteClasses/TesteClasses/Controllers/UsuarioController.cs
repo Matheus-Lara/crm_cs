@@ -64,6 +64,7 @@ namespace TesteClasses.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = C.ADMIN)]
         public async Task<IActionResult> PutUsuarioModel(int id, UsuarioModel usuarioModel)
         {
             if (id != usuarioModel.IdUsuario)
@@ -93,6 +94,39 @@ namespace TesteClasses.Controllers
             }
 
             return NoContent();
+        }
+
+        [Route("AtualizarCredenciais/{id}")]
+        [HttpPut]
+        public async Task<IActionResult> AtualizarCredenciais(int id, [FromBody] UpdateCredencial credencial)
+        {
+            UsuarioModel usuario = _context.UsuarioModel.SingleOrDefault(u => u.Login == credencial.Login);
+
+            if (usuario == null || !SenhaService.CompararHash(credencial.SenhaAtual, usuario.Senha)) {
+                return NotFound(new { message = "Usuário ou senha inválidos" });
+            }
+
+            usuario.Senha = SenhaService.GerarHash(credencial.NovaSenha);
+            
+            _context.Entry(usuario).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!UsuarioModelExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();     
         }
 
         [HttpPost]
