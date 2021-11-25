@@ -13,7 +13,7 @@ namespace TesteClasses.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    // [Authorize]
     public class PropostaController : ControllerBase
     {
         private readonly TesteClassesContext _context;

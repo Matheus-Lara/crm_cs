@@ -11,7 +11,7 @@ namespace TesteClasses.Controllers
 {
     [ApiController]
     [Route("")]
-    [Authorize]
+    // [Authorize]
     public class HomeController : ControllerBase
     {
         [HttpGet]

@@ -14,7 +14,7 @@ namespace TesteClasses.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    // [Authorize]
     public class UsuarioController : ControllerBase
     {
         private readonly TesteClassesContext _context;
@@ -46,7 +46,7 @@ namespace TesteClasses.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = C.ADMIN)]
+        // [Authorize(Roles = C.ADMIN)]
         public ActionResult<IEnumerable<UsuarioModel>> GetUsuarioModel()
         {
             var listUsers = _context.UsuarioModel.ToList();
@@ -75,7 +75,7 @@ namespace TesteClasses.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize(Roles = C.ADMIN)]
+        // [Authorize(Roles = C.ADMIN)]
         public async Task<IActionResult> PutUsuarioModel(int id, UsuarioModel usuarioModel)
         {
             if (id != usuarioModel.IdUsuario)
@@ -156,7 +156,7 @@ namespace TesteClasses.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = C.ADMIN)]
+        // [Authorize(Roles = C.ADMIN)]
         public async Task<IActionResult> DeleteUsuarioModel(int id)
         {
             var usuarioModel = await _context.UsuarioModel.FindAsync(id);
