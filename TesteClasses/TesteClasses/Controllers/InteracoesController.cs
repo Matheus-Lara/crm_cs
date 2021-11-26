@@ -102,6 +102,14 @@ namespace TesteClasses.Controllers
             return NoContent();
         }
 
+        [HttpGet, Route("ObterInteracoesCliente/{id}")]
+        public async Task<ActionResult<IEnumerable<InteracoesModel>>> GetInteracoesCliente(int id)
+        {
+            var interacoesCliente = _context.InteracoesModel.Where(w => w.IdCliente == id).ToList();
+
+            return interacoesCliente;
+        }
+
         private bool InteracoesModelExists(int id)
         {
             return _context.InteracoesModel.Any(e => e.IdInteracao == id);
